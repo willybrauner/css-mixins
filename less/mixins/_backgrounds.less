@@ -1,0 +1,21 @@
+/**
+ * Set quick and dirty back gradient.
+ */
+.gradient (@startColor: #000, @endColor: #fff, @deg: to bottom)
+{
+	background: linear-gradient(@deg, @startColor, @endColor);
+}
+
+/**
+ * Center a video in its parent.
+ * Equivalent to the 'cover' background position but for video
+ */
+.videoBackground ()
+{
+	// Center
+	.absoluteCenter();
+
+	// Set size to always get in screen
+	.square();
+	.minSize(100%, 100%);
+}

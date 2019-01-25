@@ -1,0 +1,127 @@
+
+/**
+ * Center with absolute and translate yx, y or x.
+ * Use with caution, preferable to avoid and use flex most of time.
+ */
+.absoluteCenter (@axis:yx)
+{
+	& when(@axis = yx) {
+		.topLeft(50%, 50%);
+		transform: translate(-50%,-50%);    
+	}
+
+	& when(@axis = y) {
+		.topLeft(50%, auto);
+		transform: translateY(-50%);
+	}
+
+	& when(@axis = x) {
+		.topLeft(auto, 50%);
+		transform: translateX(-50%);
+	}
+}
+
+
+/**
+ * place
+ * One-line method for setting an element’s positioning
+ * Parameters are nullable
+ */
+.place (@top:auto; @right:auto; @bottom:auto; @left:auto; @position:absolute)
+{
+	& when not (@position = null) {
+		position: @position;
+	}
+	& when not (@top = null) {
+		top: @top;
+	}
+	& when not (@right = null) {
+		right: @right;
+	}
+	& when not (@bottom = null) {
+		bottom: @bottom;
+	}
+	& when not (@left = null) {
+		left: @left;
+	}
+}
+
+/**
+ * Place an element absolute on top left
+ */
+.topLeft (@top:auto; @left:auto; @position:absolute)
+{
+	position: @position;
+	top: @top;
+	left: @left;
+}
+
+/**
+ * Place an element absolute on top right
+ */
+.topRight (@top:auto; @right:auto; @position:absolute)
+{
+	position: @position;
+	top: @top;
+	right: @right;
+}
+
+/**
+ * Place an element absolute on bottom right
+ */
+.bottomRight (@bottom:auto; @right:auto; @position:absolute)
+{
+	position: @position;
+	bottom: @bottom;
+	right: @right;
+}
+
+/**
+ * Place an element absolute on bottom left
+ */
+.bottomLeft (@bottom:auto; @left:auto; @position:absolute)
+{
+	position: @position;
+	bottom: @bottom;
+	left: @left;
+}
+
+/**
+ * flex
+ * (à placer sur le parent)
+ */
+.flex (@display:flex, @direction:row, @wrap:wrap, @justifyContent:flex-start, @alignItems:flex-start, @firstChildGutter:0)
+{
+	display: @display;                   // flex | inline-flex
+	flex-direction: @direction;          // row | row-reverse | column | column-reverse
+	flex-wrap: @wrap;                    // nowrap | wrap | wrap-reverse
+	justify-content: @justifyContent;    // flex-start | flex-end | center | space-between | space-around
+	align-items: @alignItems;            // flex-start | flex-end | center | baseline | stretch
+
+	// remove gutter of children first-child
+	& when (@firstChildGutter > 0)
+	{
+		margin-left: -@firstChildGutter;
+	}
+}
+
+
+/**
+ * flexCol 
+ * (à placer sur les enfants)
+ */
+.flexCol (@totalGrid:@totalGrid, @number:@number, @gutter:0, @center:false)
+{
+	width: ~'calc(100% / @{totalGrid} * @{number} - @{gutter})';
+	flex: 0 0 auto;
+
+	& when (@center = false)
+	{
+		margin-left: @gutter;
+	}
+	& when (@center = true)
+	{
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

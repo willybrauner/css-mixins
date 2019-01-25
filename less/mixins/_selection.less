@@ -1,0 +1,33 @@
+/**
+ * Disable text selection on an element
+ */
+.disableSelection ()
+{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/**
+ * Enable text selection on an element
+ */
+.enableSelection ()
+{
+	-webkit-touch-callout: all;
+	-webkit-user-select: all;
+	-khtml-user-select: all;
+	-moz-user-select: all;
+	-ms-user-select: all;
+	user-select: all;
+}
+
+/**
+ * Remove touch callout on safari mobile
+ */
+.disableTouchCallout ()
+{
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}

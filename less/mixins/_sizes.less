@@ -1,0 +1,105 @@
+/**
+ * Set width and height on en element
+ * If only one value parameter is set, width and height will be equal
+ * ex:
+ * 	.size(10px);
+ *
+ * return:
+ *	width: 10px;
+ *	height: 10px;
+ */
+.size (@width:auto; @height:@width)
+{
+	width: @width;
+	height: @height;
+}
+
+
+/**
+ * Set same width and height
+ */
+.square (@size: auto)
+{
+	width: @size;
+	height: @size;
+}
+
+/**
+ * Set width and height on an element and apply ratio
+ */
+.ratio (@width: 1; @height: 1; @ratio: 1)
+{
+	width: @width * @ratio;
+	height: @height * @ratio;
+}
+
+/**
+ * Set min-width and min-height
+ * If only one value parameter is set, min-width and min-height will be equal
+ * ex:
+ * 	.minSize(10px);
+ *
+ * return:
+ *	min-width: 10px;
+ *	min-height: 10px;
+ */
+.minSize (@width: none, @height:@width)
+{
+	min-width: @width;
+	min-height: @height;
+}
+
+/**
+ * Set max-width and max-height
+ * If only one value parameter is set, max-width and max-height will be equal
+ * ex:
+ * 	.maxSize(10px);
+ *
+ * return:
+ *	max-width: 10px;
+ *	max-height: 10px;
+ */
+.maxSize (@width: none, @height:@width)
+{
+	max-width: @width;
+	max-height: @height;
+}
+
+/**
+ * Set bigger hitzone with :after.
+ */
+.hitZone (@horizontalSize: 10px, @verticalSize: 10px, @color: transparent)
+{
+	&:after
+	{
+		content: '';
+		background-color: @color;
+		.place(-@verticalSize, -@horizontalSize, -@verticalSize, -@horizontalSize);
+	}
+}
+
+/**
+ * Set a property size to em from px size
+ */
+.toEm(@selector, @emValue)
+{
+		@{selector}: unit((@emValue / @emRatio), em);
+}
+.toEm(@selector, @emValue1, @emValue2)
+{
+		@{selector}:  unit((@emValue1 / @emRatio), em)
+									unit((@emValue2 / @emRatio), em);
+}
+.toEm(@selector, @emValue1, @emValue2, @emValue3)
+{
+		@{selector}:  unit((@emValue1 / @emRatio), em)
+									unit((@emValue2 / @emRatio), em)
+									unit((@emValue3 / @emRatio), em);
+}
+.toEm(@selector, @emValue1, @emValue2, @emValue3, @emValue4)
+{
+		@{selector}:  unit((@emValue1 / @emRatio), em)
+									unit((@emValue2 / @emRatio), em)
+									unit((@emValue3 / @emRatio), em)
+									unit((@emValue4 / @emRatio), em);
+}

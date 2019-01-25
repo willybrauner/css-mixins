@@ -1,0 +1,61 @@
+/**
+ * Patch scrolling on iOS
+ * Hide visible scrollBar on IE10+ and chrome PC
+ */
+.scrollPatch ()
+{
+	// Compatibilité IE / iPad
+	overflow-scrolling: touch;
+	-webkit-overflow-scrolling: touch;
+
+	// Masquer les scrollBar sur ie10+
+	-ms-overflow-style: none;
+
+	// Masquer les scrollbar sur chrome
+	&::-webkit-scrollbar
+	{
+		width: 0 !important;
+		height: 0 !important;
+	}
+}
+
+/**
+ * Force scrollBar to be shown
+ */
+.showScrollBar ()
+{
+	-ms-overflow-style: scrollbar;
+	&::-webkit-scrollbar
+	{
+		width: auto;
+		height: auto;
+	}
+}
+
+/**
+ * Enable vertical scroll on an element and patch it.
+ * NOTE : This is not a mixin because we need this declaration from javascript.
+ */
+.verticalScroll
+{
+	// Enabled overflow on Y
+	overflow: hidden;
+	overflow-y: scroll;
+
+	// Activate scroll patch and hide scrollbars
+	.scrollPatch();
+}
+
+/**
+ * Enable horizontal scroll on an element and patch it.
+ * NOTE : This is not a mixin because we need this declaration from javascript.
+ */
+.horizontalScroll
+{
+	// Enabled overflow on X
+	overflow: hidden;
+	overflow-x: scroll;
+
+	// Activate scroll patch and hide scrollbars
+	.scrollPatch();
+}
